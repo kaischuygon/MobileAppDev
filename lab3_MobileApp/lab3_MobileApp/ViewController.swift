@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var capitalSwitch: UISwitch!
     @IBOutlet weak var fontSlider: UISlider!
+    @IBOutlet var viewController: UIView!
     
     let titles = ["fellowship of the ring", "two towers", "return of the king"]
     
@@ -21,12 +22,15 @@ class ViewController: UIViewController {
         case 1:
             moviePoster.image = UIImage(named:"towers")
             movieTitle.text = titles[1]
+            viewController.backgroundColor = UIColor(named:"towersColor")
         case 2:
             moviePoster.image = UIImage(named:"return")
             movieTitle.text = titles[2]
+            viewController.backgroundColor = UIColor(named:"returnColor")
         default:
             moviePoster.image = UIImage(named:"fellowship")
             movieTitle.text = titles[0]
+            viewController.backgroundColor = UIColor(named:"fellowshipColor")
         }
     }
     func updateCaps(){
@@ -45,7 +49,6 @@ class ViewController: UIViewController {
     }
     @IBAction func sliderAction(_ sender: UISlider) {
         let fontSize = sender.value
-//        fontSizeLabel.text = String(format: "%.0f", fontSize)
         let fontSizeCGFloat = CGFloat(fontSize)
         movieTitle.font=UIFont.systemFont(ofSize: fontSizeCGFloat)
     }

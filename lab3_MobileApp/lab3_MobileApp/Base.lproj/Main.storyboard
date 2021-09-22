@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -84,7 +84,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="fellowshipColor"/>
                         <constraints>
                             <constraint firstItem="MTo-6T-rVr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="48b-U8-KUF"/>
                             <constraint firstItem="MTo-6T-rVr" firstAttribute="top" secondItem="Yb2-9C-SfG" secondAttribute="bottom" constant="10" id="6AU-wF-Fid"/>
@@ -103,6 +103,7 @@
                         <outlet property="moviePoster" destination="Yb2-9C-SfG" id="fYm-Pg-P5X"/>
                         <outlet property="movieTitle" destination="dDU-m9-uBq" id="rNX-Pr-uKE"/>
                         <outlet property="segmentedControl" destination="eL9-ls-2lP" id="uuN-xC-bAk"/>
+                        <outlet property="viewController" destination="8bC-Xf-vdC" id="fZW-Ts-4Nr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,8 +113,8 @@
     </scenes>
     <resources>
         <image name="fellowship" width="821" height="1200"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="fellowshipColor">
+            <color red="0.65098039215686276" green="0.64313725490196083" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
