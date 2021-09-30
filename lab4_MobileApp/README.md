@@ -13,6 +13,3 @@ Create an app in a new Xcode project that includes the following:
 * Your app should work for all size iPhones in portrait and landscape orientation.
 
 Don't forget your app icons and launch screen.
-
-## Video
-![Video](recording.mp4)
