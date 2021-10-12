@@ -17,6 +17,13 @@ __Requirements:__
 ## Project Description
 The user inputs a color (either in hexadecimal or rgb sliders), and the app calculates 2 "triadic colors". 
 
+## MVP
+The minimum functionality my app will meet is the following:=
+* Users will be able to enter a color using hex codes
+* Users will be able to enter a color using rgb sliders
+* rgb sliders will update the colors while being dragged so users can select their color in a more precise way
+* The app will calculate 2 colors from the user’s input that are triadic complements.
+
 __Triadic calculation__
 * I calculated triadic colors by rotating `r, g, b` values like so:
     ```
@@ -24,6 +31,7 @@ __Triadic calculation__
     triadic1 = #a3a1a2
     triadic2 = #a2a3a1
     ```
+* the source for this method is cited in the `ViewController.swift` file where relevant.
 
 ## Screenshots
 ![screenshots](screenshots.png)
