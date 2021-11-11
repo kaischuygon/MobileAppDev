@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Arepa Assembler</string>
+    <string name="heading">Arepa Assembler</string>
+    <string name="chicken">Chicken</string>
+    <string name="pork">Pork</string>
+    <string name="plantain">Plantain</string>
+    <string name="guasacaca">Guasacaca</string>
+    <string name="queso">Queso</string>
+    <string name="blackBeans">Black Beans</string>
+    <string name="hotSauce">Hot Sauce</string>
+    <string name="takeout">take out</string>
+    <string name="arepaButton">Create</string>
+    <string-array name="location">
+        <item>Caracas</item>
+        <item>Maracaibo</item>
+        <item>Valencia</item>
+    </string-array>
+    <string name="message"> </string>
+
+</resources>
