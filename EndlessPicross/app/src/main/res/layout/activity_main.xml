@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill|center_vertical"
+            android:gravity="center|fill_vertical"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/size" />
+
+                <com.google.android.material.slider.Slider
+                    android:layout_width="@dimen/grid_size"
+                    android:layout_height="wrap_content"
+                    android:value="3"
+                    android:valueFrom="2"
+                    android:valueTo="6"
+                    android:stepSize="1"/>
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="@dimen/grid_size"
+                android:layout_height="@dimen/grid_size"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="100dp"
+                android:layout_weight="1"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/button00"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button01"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button02"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/button10"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button11"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button12"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/button20"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button21"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <Button
+                        android:id="@+id/button22"
+                        style="@style/Widget.AppCompat.Button"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonshape"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/safeMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/safeMode" />
+
+            <Button
+                android:id="@+id/newGameButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/newGameButton" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
