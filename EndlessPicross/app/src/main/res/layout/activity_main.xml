@@ -38,127 +38,24 @@
                     android:text="@string/size" />
 
                 <com.google.android.material.slider.Slider
+                    android:id="@+id/sizeSlider"
                     android:layout_width="@dimen/grid_size"
                     android:layout_height="wrap_content"
+                    android:stepSize="1"
                     android:value="3"
                     android:valueFrom="2"
-                    android:valueTo="6"
-                    android:stepSize="1"/>
+                    android:valueTo="6" />
 
             </LinearLayout>
 
             <TableLayout
+                android:id="@+id/gameGrid"
                 android:layout_width="@dimen/grid_size"
                 android:layout_height="@dimen/grid_size"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="100dp"
                 android:layout_weight="1"
-                android:stretchColumns="*">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/margin"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/button00"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button01"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button02"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/margin"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/button10"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button11"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button12"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/margin"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/button20"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button21"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <Button
-                        android:id="@+id/button22"
-                        style="@style/Widget.AppCompat.Button"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/buttonshape"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </TableRow>
-
-            </TableLayout>
+                android:stretchColumns="*"/>
 
             <com.google.android.material.chip.Chip
                 style="@style/Widget.MaterialComponents.Chip.Choice"
