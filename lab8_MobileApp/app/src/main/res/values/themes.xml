@@ -29,4 +29,13 @@
         <item name="fontFamily">@font/sriracha</item>
         <item name="background">@color/background</item>
     </style>
+
+    <style name="Theme.Pabellon.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Pabellon.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Pabellon.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

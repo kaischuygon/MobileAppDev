@@ -22,66 +22,65 @@ class MainActivity : AppCompatActivity() {
     lateinit var checkboxes : ArrayList<CheckBox>
     lateinit var spinner : Spinner
     lateinit var switch : SwitchMaterial
-    lateinit var image : ImageView
     lateinit var createButton : Button
     private var fillingId = -1
     private var myArepaShop = ArepaShop();
     private var selectedLocationPosition = 0
-//    private val REQUEST_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
-        fillingId = radioGroup.checkedRadioButtonId
-        messageTextView = findViewById<TextView>(R.id.messageTextView)
-        layoutRoot = findViewById<ConstraintLayout>(R.id.root_layout)
-        checkBox1 = findViewById<CheckBox>(R.id.checkBox1)
-        checkBox2 = findViewById<CheckBox>(R.id.checkBox2)
-        checkBox3 = findViewById<CheckBox>(R.id.checkBox3)
-        checkBox4 = findViewById<CheckBox>(R.id.checkBox4)
-        checkboxes = arrayListOf<CheckBox>(checkBox1, checkBox2, checkBox3, checkBox4)
-        spinner = findViewById<Spinner>(R.id.spinner)
-        switch = findViewById<SwitchMaterial>(R.id.takeoutSwitch)
-        image = findViewById<ImageView>(R.id.arepaImage)
-        createButton = findViewById<Button>(R.id.createButton)
+        radioGroup = findViewById(R.id.radioGroup)
+        messageTextView = findViewById(R.id.messageTextView)
+        layoutRoot = findViewById(R.id.root_layout)
+        checkBox1 = findViewById(R.id.checkBox1)
+        checkBox2 = findViewById(R.id.checkBox2)
+        checkBox3 = findViewById(R.id.checkBox3)
+        checkBox4 = findViewById(R.id.checkBox4)
+        checkboxes = arrayListOf(checkBox1, checkBox2, checkBox3, checkBox4)
+        spinner = findViewById(R.id.spinner)
+        switch = findViewById(R.id.takeoutSwitch)
+        createButton = findViewById(R.id.createButton)
 
         //event listener
         createButton.setOnClickListener {
+            fillingId = radioGroup.checkedRadioButtonId
             selectedLocationPosition = spinner.selectedItemPosition
-            myArepaShop.suggestArepaShop(selectedLocationPosition)
-            Log.i("shop suggested", myArepaShop.name);
-            Log.i("url suggested", myArepaShop.url);
+            val selectedRadioButton = findViewById<RadioButton>(fillingId)
+            val selectedArepaPosition = selectedRadioButton.text
+            myArepaShop.compileOrder(selectedLocationPosition, selectedArepaPosition.toString())
+            Log.i("arepa created", myArepaShop.name);
+            Log.i("url suggested", myArepaShop.locationUrl);
 
             //create intent
-            val intent = Intent(this, ArepaActivity::class.java)
-            intent.putExtra("arepaName", myArepaShop.name)
-            intent.putExtra("arepaLocation", myArepaShop.url)
+            if(readOptions().first != "") {
+                val intent = Intent(this, ArepaActivity::class.java)
+                intent.putExtra("arepaName", readOptions().first)
+                intent.putExtra("arepaImage", readOptions().second)
+                intent.putExtra("arepaLocation", myArepaShop.locationUrl)
 
-            startActivity(intent)
+                startActivity(intent)
+            }
         }
     }
-    fun createTaco(view: View) {
-        var filling : CharSequence = ""
-        var toppingList : String = "" //String
 
-        if (fillingId == -1){
+    fun readOptions() : Pair<String, String> {
+        if (fillingId == -1) {
             //SnackBar
-            val fillingSnackBar = Snackbar.make(layoutRoot, "Please select a filling", Snackbar.LENGTH_SHORT)
+            val fillingSnackBar =
+                Snackbar.make(layoutRoot, "Please select a filling", Snackbar.LENGTH_SHORT)
             fillingSnackBar.show()
         } else {
-            filling = findViewById<RadioButton>(fillingId).text
-            when(filling) {
-                "Chicken" -> image.setImageResource(R.drawable.polloguisado)
-                "Pork" -> image.setImageResource(R.drawable.pabellon)
-                "Plantain" -> image.setImageResource(R.drawable.original)
-            }
+            var filling: CharSequence = findViewById<RadioButton>(fillingId).text
+            var imageSelection: Int
+            var toppingList: String = ""
+            var arepaMessage: String
 
             //checkboxes
-            for(checkbox in checkboxes) {
-                val newTopping : String = checkbox.text.toString()
-                if(checkbox.isChecked){
+            for (checkbox in checkboxes) {
+                val newTopping: String = checkbox.text.toString()
+                if (checkbox.isChecked) {
                     toppingList += " $newTopping"
                 }
             }
@@ -90,14 +89,14 @@ class MainActivity : AppCompatActivity() {
             val location = spinner.selectedItem
 
             //textview
-            messageTextView.text = "You'd like an $filling arepa with $toppingList at $location"
+            arepaMessage = "You'd like an ${myArepaShop.name} arepa with $toppingList at $location"
 
             //switch
-            if (switch.isChecked) {
-                messageTextView.text = "You'd like an $filling arepa with $toppingList at $location"
-            } else {
-                messageTextView.text = "You'd like an $filling arepa with $toppingList at $location for take out"
+            if (!switch.isChecked) {
+                arepaMessage += " for take out"
             }
+            return Pair(arepaMessage, filling.toString())
         }
+        return Pair("", "")
     }
 }

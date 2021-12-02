@@ -1,26 +1,26 @@
 package com.example.arepaassembler
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
-import android.view.View
-import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.switchmaterial.SwitchMaterial
 import android.content.Intent
+import android.media.Image
 import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.arepaassembler.databinding.ActivityArepaBinding
 
 class ArepaActivity : AppCompatActivity() {
-    // private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityArepaBinding
 
     lateinit var arepaNameTextView : TextView
     lateinit var feedbackEditText : EditText
+    lateinit var arepaImage : ImageView
     private var arepaName : String? = null
     private var arepaLocation : String? = null
+    private var arepaImageFilling : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,22 +30,27 @@ class ArepaActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-//        val navController = findNavController(R.id.nav_host_fragment_content_taco)
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-
         //view
         arepaNameTextView = findViewById(R.id.arepaNameTextView)
-        feedbackEditText = findViewById(R.id.feedbackEditText)
+        arepaImage = findViewById(R.id.arepaImage)
 
         //intent data
-        arepaName = intent.getStringExtra("tacoShopName")
-        arepaLocation = intent.getStringExtra("tacoShopURL")
+        arepaName = intent.getStringExtra("arepaName")
+        arepaImageFilling = intent.getStringExtra("arepaImage")
+        arepaLocation = intent.getStringExtra("arepaLocationUrl")
 
-        arepaName?.let { Log.i("shop received", it) };
-        arepaLocation?.let { Log.i("url received", it) };
+        arepaName?.let { Log.i("name received", it) };
+        arepaLocation?.let { Log.i("location received", it) };
 
-        arepaLocation?.let {arepaLocation.text = "You are getting an $arepaName "}
+        arepaName?.let {arepaNameTextView.text = arepaName}
+        arepaImageFilling?.let {
+            when (arepaImageFilling) {
+                "Chicken" -> arepaImage.setImageResource(R.drawable.polloguisado)
+                "Pork" -> arepaImage.setImageResource(R.drawable.pabellon)
+                "Plantain" -> arepaImage.setImageResource(R.drawable.original)
+                else -> arepaImage.setImageResource(R.drawable.icon)
+            }
+        }
 
         binding.fab.setOnClickListener { view -> loadMaps() }
     }
@@ -59,24 +64,13 @@ class ArepaActivity : AppCompatActivity() {
     }
 
     private fun loadMaps(){ // Android Maps intent to open location in maps app https://developers.google.com/maps/documentation/urls/android-intents#kotlin
-        //create intent
-//        var intent = Intent()
-//        intent.action = Intent.ACTION_VIEW
-//        intent.data = locationUrl?.let{ Uri.parse(locationUrl)}
-
         // Create a Uri from an intent string. Use the result to create an Intent.
         val locationUrl = arepaLocation?.let{ Uri.parse(arepaLocation)}
         val gmmIntentUri = Uri.parse(locationUrl.toString())
-
-        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        // Make the Intent explicit by setting the Google Maps package
         mapIntent.setPackage("com.google.android.apps.maps")
-
-        // Attempt to start an activity that can handle the Intent
-        startActivity(mapIntent)
-
-        // start activity
-//        startActivity(intent)
+        mapIntent.resolveActivity(packageManager)?.let {
+            startActivity(mapIntent)
+        }
     }
 }

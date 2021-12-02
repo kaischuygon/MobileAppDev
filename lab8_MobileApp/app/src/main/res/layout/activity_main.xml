@@ -150,22 +150,11 @@
                 android:id="@+id/createButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="createTaco"
+                android:onClick="createArepa"
                 android:text="@string/arepaButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/miscOptions" />
-
-            <ImageView
-                android:id="@+id/arepaImage"
-                android:layout_width="250dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="81dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/messageTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
