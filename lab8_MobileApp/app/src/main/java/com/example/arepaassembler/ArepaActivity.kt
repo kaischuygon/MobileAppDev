@@ -1,12 +1,9 @@
 package com.example.arepaassembler
 
-import android.app.Activity
 import android.content.Intent
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +13,6 @@ class ArepaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArepaBinding
 
     lateinit var arepaNameTextView : TextView
-    lateinit var feedbackEditText : EditText
     lateinit var arepaImage : ImageView
     private var arepaName : String? = null
     private var arepaLocation : String? = null
@@ -27,7 +23,6 @@ class ArepaActivity : AppCompatActivity() {
 
         binding = ActivityArepaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
         //view
@@ -55,22 +50,13 @@ class ArepaActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view -> loadMaps() }
     }
 
-    override fun onBackPressed() {
-        val data = Intent()
-        data.putExtra("feedback", feedbackEditText.text.toString())
-        setResult(Activity.RESULT_OK, data) //must be set before super.onBackPressed()
-        super.onBackPressed()
-        finish()
-    }
-
-    private fun loadMaps(){ // Android Maps intent to open location in maps app https://developers.google.com/maps/documentation/urls/android-intents#kotlin
-        // Create a Uri from an intent string. Use the result to create an Intent.
-        val locationUrl = arepaLocation?.let{ Uri.parse(arepaLocation)}
-        val gmmIntentUri = Uri.parse(locationUrl.toString())
+    private fun loadMaps() { // Android Maps intent to open location in maps app https://developers.google.com/maps/documentation/urls/android-intents#kotlin
+        val locationUrl = arepaLocation?.let{ Uri.parse(arepaLocation)}.toString()
+        val gmmIntentUri = Uri.parse(locationUrl)
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         mapIntent.setPackage("com.google.android.apps.maps")
-        mapIntent.resolveActivity(packageManager)?.let {
+//        mapIntent.resolveActivity(packageManager)?.let {
             startActivity(mapIntent)
-        }
+//        }
     }
 }

@@ -45,20 +45,19 @@ class MainActivity : AppCompatActivity() {
 
         //event listener
         createButton.setOnClickListener {
-            fillingId = radioGroup.checkedRadioButtonId
-            selectedLocationPosition = spinner.selectedItemPosition
-            val selectedRadioButton = findViewById<RadioButton>(fillingId)
-            val selectedArepaPosition = selectedRadioButton.text
-            myArepaShop.compileOrder(selectedLocationPosition, selectedArepaPosition.toString())
-            Log.i("arepa created", myArepaShop.name);
-            Log.i("url suggested", myArepaShop.locationUrl);
-
             //create intent
-            if(readOptions().first != "") {
+            if(readOptions().first != "") { // do not move onto next intent if options are not selected
+                selectedLocationPosition = spinner.selectedItemPosition
+                fillingId = radioGroup.checkedRadioButtonId
+                val selectedRadioButton = findViewById<RadioButton>(fillingId)
+                val selectedArepaPosition = selectedRadioButton.text
+                myArepaShop.compileOrder(selectedLocationPosition, selectedArepaPosition.toString())
+                Log.i("arepa created", myArepaShop.name);
+                Log.i("url suggested", myArepaShop.locationUrl);
                 val intent = Intent(this, ArepaActivity::class.java)
                 intent.putExtra("arepaName", readOptions().first)
                 intent.putExtra("arepaImage", readOptions().second)
-                intent.putExtra("arepaLocation", myArepaShop.locationUrl)
+                intent.putExtra("arepaLocationUrl", myArepaShop.locationUrl)
 
                 startActivity(intent)
             }
@@ -66,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun readOptions() : Pair<String, String> {
+        fillingId = radioGroup.checkedRadioButtonId
         if (fillingId == -1) {
             //SnackBar
             val fillingSnackBar =
@@ -73,10 +73,8 @@ class MainActivity : AppCompatActivity() {
             fillingSnackBar.show()
         } else {
             var filling: CharSequence = findViewById<RadioButton>(fillingId).text
-            var imageSelection: Int
             var toppingList: String = ""
             var arepaMessage: String
-
             //checkboxes
             for (checkbox in checkboxes) {
                 val newTopping: String = checkbox.text.toString()
@@ -84,13 +82,10 @@ class MainActivity : AppCompatActivity() {
                     toppingList += " $newTopping"
                 }
             }
-
             //spinner
             val location = spinner.selectedItem
-
             //textview
             arepaMessage = "You'd like an ${myArepaShop.name} arepa with $toppingList at $location"
-
             //switch
             if (!switch.isChecked) {
                 arepaMessage += " for take out"
