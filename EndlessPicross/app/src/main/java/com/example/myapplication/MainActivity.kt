@@ -10,7 +10,7 @@ import com.google.android.material.slider.Slider
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var sliderVal: Slider
+//    private lateinit var sliderVal: Slider
     lateinit var grid: TableLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,14 +18,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // views
-        sliderVal = findViewById(R.id.sizeSlider)
+//        sliderVal = findViewById(R.id.sizeSlider)
         grid = findViewById(R.id.gameGrid)
 
         // app setup
-        setupBoard()
+        generateGame()
     }
 
-    private fun setupBoard() {
+    private fun generateGame() {
+        for(i in 0..5) {
+
+        }
+    }
+    /*private fun setupBoard() {
         val boardSize:Int = sliderVal.value.toInt()
         for (i in 0..boardSize){
             val tempTableRow = TableRow(this)
@@ -50,5 +55,5 @@ class MainActivity : AppCompatActivity() {
             }
             grid.addView(tempTableRow)
         }
-    }
+    }*/
 }
