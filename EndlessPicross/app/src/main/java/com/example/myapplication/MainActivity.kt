@@ -1,59 +1,50 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
+import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.view.marginEnd
+import com.google.android.material.chip.Chip
 import com.google.android.material.slider.Slider
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-//    private lateinit var sliderVal: Slider
     lateinit var grid: TableLayout
+    lateinit var safeModeChip: Chip
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // views
-//        sliderVal = findViewById(R.id.sizeSlider)
         grid = findViewById(R.id.gameGrid)
+        safeModeChip = findViewById(R.id.safeMode)
 
         // app setup
-        generateGame()
     }
 
-    private fun generateGame() {
-        for(i in 0..5) {
+    fun changeColorOnClick(view: View) {
+        val currentColor = view.backgroundTintList?.defaultColor
+        val defaultColor = getColor(R.color.design_default_color_primary)
+        val clickedColor = Color.BLACK
 
-        }
+        val nextColor = if (currentColor == clickedColor) defaultColor else clickedColor
+        view.backgroundTintList = ColorStateList.valueOf(nextColor)
     }
-    /*private fun setupBoard() {
-        val boardSize:Int = sliderVal.value.toInt()
-        for (i in 0..boardSize){
-            val tempTableRow = TableRow(this)
-            val params = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.MATCH_PARENT
-            )
-            params.setMargins(0, 0, 0, R.dimen.margin)
-            params.weight = 1f
-            tempTableRow.layoutParams = params
-            for (j in 0..boardSize) {
-                val tempButton = Button(this)
-                val buttonParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT
-                )
-                buttonParams.setMargins(0, 0, R.dimen.margin, 0)
-                buttonParams.weight = 1f
-                tempButton.setBackgroundResource(R.drawable.buttonshape)
-                tempButton.layoutParams = buttonParams
-                tempTableRow.addView(tempButton)
-            }
-            grid.addView(tempTableRow)
-        }
-    }*/
+
+    fun onButtonClick(view: View) {
+        changeColorOnClick(view)
+
+        Log.i("clickedButton: ", resources.getResourceEntryName(view.id))
+    }
+
 }
